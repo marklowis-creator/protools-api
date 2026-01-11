@@ -70,8 +70,8 @@ def home():
 
 @app.post("/firms/connect")
 def firms_connect():
-    """
-   payload = request.get_json(force=True) or {}
+
+    payload = request.get_json(force=True) or {}
     firm_id = payload.get("firm_id")
     tenant_id = payload.get("tenant_id")
     refresh_token = payload.get("refresh_token")
