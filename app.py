@@ -8,12 +8,8 @@ app = Flask(__name__)
 XERO_CLIENT_ID = os.environ.get("XERO_CLIENT_ID", "")
 XERO_CLIENT_SECRET = os.environ.get("XERO_CLIENT_SECRET", "")
 
-# ---- V1 storage (replace with DB later) ----
-# firm_id -> {"tenant_id": "...", "refresh_token": "..."}
 FIRMS = {}
 
-# Cache access tokens for a short time to reduce refresh calls
-# firm_id -> {"access_token": "...", "expires_at": unix_ts}
 ACCESS_CACHE = {}
 
 def _basic_auth_header(client_id: str, client_secret: str) -> str:
