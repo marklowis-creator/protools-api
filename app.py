@@ -71,16 +71,15 @@ def home():
 @app.post("/firms/connect")
 def firms_connect():
     """
-    One-time setup endpoint (temporary):
-    POST { firm_id, tenant_id, refresh_token }
-    Stores credentials for that firm.
-    """
-    payload = request.get_json(force=True) or {}
+   payload = request.get_json(force=True) or {}
     firm_id = payload.get("firm_id")
     tenant_id = payload.get("tenant_id")
     refresh_token = payload.get("refresh_token")
     if not firm_id or not tenant_id or not refresh_token:
         return jsonify({"ok": False, "error": "firm_id, tenant_id, refresh_token required"}), 400
+
+    FIRMS[firm_id] = {"tenant_id": tenant_id, "refresh_token": refresh_token}
+    return jsonify({"ok": True}), 200
 
     FIRMS[firm_id] = {"tenant_id": tenant_id, "refresh_token": refresh_token}
     return jsonify({"ok": True}), 200
